@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
  */
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -55,6 +56,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+
         return $this->render('index');
     }
 

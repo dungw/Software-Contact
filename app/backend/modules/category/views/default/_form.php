@@ -1,11 +1,8 @@
 <?php
-
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\Category */
-/* @var $form yii\widgets\ActiveForm */
+use common\models\Category;
 ?>
 
 <div class="category-form">
@@ -17,6 +14,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'cat_description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
+
+    <?= Html::activeDropDownList($model, 'status', Category::$status) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

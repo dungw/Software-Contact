@@ -8,11 +8,12 @@ use common\models\SoftwareSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * DefaultController implements the CRUD actions for Software model.
  */
-class DefaultController extends Controller
+class DefaultController extends BackendController
 {
     public function behaviors()
     {

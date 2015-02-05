@@ -14,6 +14,11 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+    static $status = array(
+        1 => 'Enabled',
+        0 => 'Disabled',
+    );
+
     /**
      * @inheritdoc
      */
