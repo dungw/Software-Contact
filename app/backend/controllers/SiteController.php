@@ -6,11 +6,12 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BackendController
 {
 
     /**
@@ -56,7 +57,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-
         return $this->render('index');
     }
 

@@ -13,9 +13,11 @@ use common\models\Category;
 
     <?= $form->field($model, 'cat_description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <div class="form-group field-category-status has-success">
+        <label class="control-label" for="category-status">Status</label>
 
-    <?= Html::activeDropDownList($model, 'status', Category::$status) ?>
+        <?= Html::activeDropDownList($model, 'status', Category::$status) ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
