@@ -7,7 +7,7 @@ use yii\web\Controller;
 
 class BackendController extends Controller {
 
-    public $layout;
+    public $layout = '//column2';
 
     public function init() {
         $id = Yii::$app->user->id;

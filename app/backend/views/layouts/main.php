@@ -37,8 +37,9 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Category', 'url' => Url::toRoute(['/category/default/index'])],
-                ['label' => 'Software', 'url' => Url::toRoute(['/software/default/index'])],
+                ['label' => 'Danh mục', 'url' => Url::toRoute(['/category/default/index'])],
+                ['label' => 'Phần mềm', 'url' => Url::toRoute(['/software/default/index'])],
+                ['label' => 'Nhà sản xuất', 'url' => Url::toRoute(['/manufacturer/default/index'])],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

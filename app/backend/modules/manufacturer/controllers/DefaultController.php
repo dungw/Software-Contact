@@ -2,6 +2,7 @@
 
 namespace backend\modules\manufacturer\controllers;
 
+use backend\controllers\BackendController;
 use Yii;
 use common\models\Manufacturer;
 use common\models\ManufacturerSearch;
@@ -12,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * DefaultController implements the CRUD actions for Manufacturer model.
  */
-class DefaultController extends Controller
+class DefaultController extends BackendController
 {
     public function behaviors()
     {

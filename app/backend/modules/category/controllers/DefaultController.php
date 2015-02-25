@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
 class DefaultController extends BackendController
 {
 
-    public $layout = '//column2';
+
 
     public function behaviors()
     {
