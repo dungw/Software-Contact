@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Category;
+use common\models\Manufacturer;
 
 /**
- * CategorySearch represents the model behind the search form about `common\models\Category`.
+ * ManufacturerSearch represents the model behind the search form about `common\models\Manufacturer`.
  */
-class CategorySearch extends Category
+class ManufacturerSearch extends Manufacturer
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['cat_id', 'status'], 'integer'],
-            [['cat_name', 'cat_description'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'logo', 'introduction', 'address', 'phone', 'website', 'email', 'established'], 'safe'],
         ];
     }
 
@@ -41,13 +41,10 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Manufacturer::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
         ]);
 
         $this->load($params);
@@ -59,27 +56,18 @@ class CategorySearch extends Category
         }
 
         $query->andFilterWhere([
-            'cat_id' => $this->cat_id,
-            'status' => $this->status,
+            'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'cat_name', $this->cat_name])
-            ->andFilterWhere(['like', 'cat_description', $this->cat_description]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'logo', $this->logo])
+            ->andFilterWhere(['like', 'introduction', $this->introduction])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'website', $this->website])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'established', $this->established]);
 
         return $dataProvider;
-    }
-
-    /**
-     * @author Vuong Dung
-     * @param $model
-     */
-    public function prepareForSelect($models = array()) {
-        $data = array();
-        if (!empty($models)) {
-            foreach ($models as $model) {
-                $data[$model->cat_id] = $model->cat_name;
-            }
-        }
-        return $data;
     }
 }

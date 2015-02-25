@@ -17,7 +17,6 @@ $this->title = 'My Yii Application';
 
         <div class="row">
 
-            <?php $this->beginBlock('block-review'); ?>
             <div class="col-lg-4">
                 <h2>Review</h2>
 
@@ -28,7 +27,6 @@ $this->title = 'My Yii Application';
 
                 <p><a class="btn btn-default" href="">Submit review &raquo;</a></p>
             </div>
-            <?php $this->endBlock(); ?>
 
             <div class="col-lg-4">
                 <h2>Software</h2>

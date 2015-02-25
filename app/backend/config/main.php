@@ -18,6 +18,9 @@ return [
         'software' => [
             'class' => 'backend\modules\software\Software',
         ],
+        'manufacturer' => [
+            'class' => 'backend\modules\manufacturer\Manufacturer',
+        ],
     ],
     'components' => [
         'user' => [
@@ -36,6 +39,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'user' => [
+            'identityClass' => 'common\models\User', // User must implement the IdentityInterface
+            'enableAutoLogin' => true,
+        ],
+
 //        'urlManager' => [
 //            'enablePrettyUrl' => false,
 //            'showScriptName' => false,

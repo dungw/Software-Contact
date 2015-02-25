@@ -13,8 +13,10 @@ use backend\controllers\BackendController;
 /**
  * DefaultController implements the CRUD actions for Software model.
  */
-class DefaultController extends BackendController
-{
+class DefaultController extends BackendController {
+
+    public $layout = '//column2';
+
     public function behaviors()
     {
         return [

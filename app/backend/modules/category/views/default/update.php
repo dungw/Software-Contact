@@ -5,14 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
 
-$this->title = 'Update Category: ' . ' ' . $model->cat_id;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->cat_id, 'url' => ['view', 'id' => $model->cat_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Cập nhật danh mục: ' . $model->cat_name;
+$this->params['breadcrumbs'][] = ['label' => 'Danh mục phần mềm', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->cat_name, 'url' => ['view', 'id' => $model->cat_id]];
+$this->params['breadcrumbs'][] = 'Cập nhật';
 ?>
 <div class="category-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -3,9 +3,11 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\Category;
+
+$attributeLabels = $model->attributeLabels();
 ?>
 
-<div class="category-form">
+<div class="cu-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -13,14 +15,13 @@ use common\models\Category;
 
     <?= $form->field($model, 'cat_description')->textarea(['rows' => 6]) ?>
 
-    <div class="form-group field-category-status has-success">
-        <label class="control-label" for="category-status">Status</label>
-
-        <?= Html::activeDropDownList($model, 'status', Category::$status) ?>
+    <div class="form-group">
+        <label class="control-label" for="category-status"><?php echo $attributeLabels['status'] ?></label><br>
+        <?= Html::activeDropDownList($model, 'status', $model->_statusData) ?>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Thêm mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

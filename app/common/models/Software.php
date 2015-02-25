@@ -24,6 +24,20 @@ use Yii;
  */
 class Software extends \yii\db\ActiveRecord
 {
+    public $_statusData = array(
+        0 => 'Không sử dụng',
+        1 => 'Kích hoạt',
+    );
+
+    public function showStatus() {
+        if (!empty($this->_statusData)) {
+            foreach ($this->_statusData as $key=>$value) {
+                if ($key == $this->status) return $value;
+            }
+        }
+        return false;
+    }
+
     /**
      * @inheritdoc
      */
@@ -51,15 +65,15 @@ class Software extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'cate_id' => 'Cate ID',
-            'manufacture_id' => 'Manufacture ID',
-            'picture' => 'Picture',
-            'description' => 'Description',
-            'user_rating' => 'User Rating',
-            'price_range' => 'Price Range',
-            'os_support' => 'Os Support',
-            'status' => 'Status',
+            'name' => 'Tên phần mềm',
+            'cate_id' => 'Danh mục',
+            'manufacture_id' => 'Nhà sản xuất',
+            'picture' => 'Ảnh',
+            'description' => 'Mô tả',
+            'user_rating' => 'Đánh giá',
+            'price_range' => 'Khoảng giá',
+            'os_support' => 'Hệ điều hành',
+            'status' => 'Trạng thái',
         ];
     }
 

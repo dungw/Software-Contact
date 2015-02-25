@@ -2,21 +2,22 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\CategorySearch;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SoftwareSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Softwares';
+$this->title = 'Phần mềm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="software-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Software', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,18 +26,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [
+                'attribute' => 'id',
+                'options' => [
+                    'width' => '8%',
+                ]
+            ],
             'name',
-            'cate_id',
-            'manufacture_id',
-            'picture',
-            // 'description:ntext',
-            // 'user_rating',
-            // 'price_range',
-            // 'os_support',
-            // 'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute' => 'cate_id',
+                'format' => 'text',
+                'filter' => true,
+                'value' => function($model) {
+                        $categorySearch = new CategorySearch();
+                        $category = array_shift($categorySearch->search(array('cat_id' => $model->cate_id))->getModels());
+                        return $category->cat_name;
+                    },
+                'filter' => false,
+            ],
+            [
+                'attribute' => 'manufacture_id',
+                'filter' => false,
+            ],
+            [
+                'attribute' => 'picture',
+                'filter' => false,
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'text',
+                'options' => [
+                    'width' => '10%',
+                ],
+                'value' => function ($model) {
+                        return $model->showStatus();
+                    },
+                'filter' => false,
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options' => [
+                    'width' => '8%'
+                ]
+            ],
         ],
     ]); ?>
 

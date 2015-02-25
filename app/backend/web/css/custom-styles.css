@@ -1,0 +1,38 @@
+body {
+    font-size: 12px !important;
+}
+
+.container {
+    width: 100% !important;
+}
+
+.form-control {
+    font-size: 12px !important;
+    padding: 3px 10px !important;
+    height: 25px !important;
+    width: 450px !important;
+}
+
+textarea.form-control {
+    height: auto !important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 6px !important;
+}
+
+.glyphicon {
+    margin-right: 7px;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 10px !important;
+}
+
+/*  Change width by screen  */
+@media screen and (max-width: 600px) {
+    .form-control {
+        width: 100% !important;
+    }
+}
+

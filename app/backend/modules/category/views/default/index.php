@@ -7,16 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Danh mục phần mềm';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,14 +25,44 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'cat_id',
-            'cat_name',
-            'cat_description:ntext',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute' => 'cat_id',
+                'format' => 'text',
+                'options' => [
+                    'width' => '8%',
+//                    'style' => 'text-align: center; font-weight: bold;',
+                ],
+                'filter' => true,
+            ],
+            [
+                'attribute' => 'cat_name',
+                'format' => 'text',
+                'options' => [
+                    'width' => '25%',
+                ]
+            ],
+            [
+                'attribute' => 'cat_description',
+                'format' => 'ntext',
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'text',
+                'options' => [
+                    'width' => '10%',
+                ],
+                'value' => function ($model) {
+                        return $model->showStatus();
+                    }
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options' => [
+                    'width' => '8%'
+                ]
+            ],
         ],
-    ]); ?>
+    ]);
+    ?>
 
 </div>

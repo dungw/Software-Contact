@@ -16,10 +16,13 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?php $this->registerCssFile('@web/css/custom-styles.css') ?>
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -57,13 +60,6 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-
-        <?php
-        if(isset($this->blocks['block-review'])) {
-            echo $this->blocks['block-review'];
-        }
-        ?>
-
         <?= $content ?>
         </div>
     </div>

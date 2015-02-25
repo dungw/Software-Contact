@@ -14,9 +14,10 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
-    static $status = array(
-        1 => 'Enabled',
-        0 => 'Disabled',
+
+    public $_statusData = array(
+        0 => 'Không sử dụng',
+        1 => 'Kích hoạt',
     );
 
     /**
@@ -25,6 +26,15 @@ class Category extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'category';
+    }
+
+    public function showStatus() {
+        if (!empty($this->_statusData)) {
+            foreach ($this->_statusData as $key=>$value) {
+                if ($key == $this->status) return $value;
+            }
+        }
+        return false;
     }
 
     /**
@@ -46,10 +56,10 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'cat_id' => 'Cat ID',
-            'cat_name' => 'Cat Name',
-            'cat_description' => 'Cat Description',
-            'status' => 'Status',
+            'cat_id' => 'ID',
+            'cat_name' => 'Tên danh mục',
+            'cat_description' => 'Mô tả',
+            'status' => 'Trạng thái',
         ];
     }
 }

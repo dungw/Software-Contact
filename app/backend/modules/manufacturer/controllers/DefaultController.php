@@ -1,23 +1,19 @@
 <?php
 
-namespace backend\modules\category\controllers;
+namespace backend\modules\manufacturer\controllers;
 
 use Yii;
-use common\models\Category;
-use common\models\CategorySearch;
-use backend\controllers\BackendController;
+use common\models\Manufacturer;
+use common\models\ManufacturerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DefaultController implements the CRUD actions for Category model.
+ * DefaultController implements the CRUD actions for Manufacturer model.
  */
-class DefaultController extends BackendController
+class DefaultController extends Controller
 {
-
-    public $layout = '//column2';
-
     public function behaviors()
     {
         return [
@@ -31,12 +27,12 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Lists all Category models.
+     * Lists all Manufacturer models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
+        $searchModel = new ManufacturerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +42,7 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single Manufacturer model.
      * @param integer $id
      * @return mixed
      */
@@ -58,16 +54,16 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new Manufacturer model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Manufacturer();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->cat_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,7 +72,7 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing Manufacturer model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +82,7 @@ class DefaultController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->cat_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -95,7 +91,7 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing Manufacturer model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +104,15 @@ class DefaultController extends BackendController
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the Manufacturer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Category the loaded model
+     * @return Manufacturer the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Manufacturer::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
