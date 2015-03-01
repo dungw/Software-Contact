@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\StandardModel;
 
 /**
  * This is the model class for table "manufacture".
@@ -19,7 +20,7 @@ use Yii;
  *
  * @property Software[] $softwares
  */
-class Manufacturer extends \yii\db\ActiveRecord
+class Manufacturer extends StandardModel
 {
     /**
      * @inheritdoc
@@ -36,7 +37,8 @@ class Manufacturer extends \yii\db\ActiveRecord
     {
         return [
             [['introduction'], 'string'],
-            [['name', 'logo', 'address'], 'string', 'max' => 255],
+            [['name', 'address'], 'string', 'max' => 255],
+            [['logo'], 'file', 'extensions'=>'jpg, gif, png, jpeg'],
             [['phone'], 'string', 'max' => 15],
             [['website', 'email'], 'string', 'max' => 50],
             [['established'], 'string', 'max' => 30]
@@ -50,14 +52,14 @@ class Manufacturer extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Tên công ty',
             'logo' => 'Logo',
-            'introduction' => 'Introduction',
-            'address' => 'Address',
-            'phone' => 'Phone',
+            'introduction' => 'Giới thiệu',
+            'address' => 'Địa chỉ',
+            'phone' => 'Số đt liên hệ',
             'website' => 'Website',
             'email' => 'Email',
-            'established' => 'Established',
+            'established' => 'Thành lập năm',
         ];
     }
 

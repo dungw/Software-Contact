@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\StandardModel;
 
 /**
  * This is the model class for table "software".
@@ -22,7 +23,7 @@ use Yii;
  * @property Manufacture $manufacture
  * @property SoftwareFeature[] $softwareFeatures
  */
-class Software extends \yii\db\ActiveRecord
+class Software extends StandardModel
 {
     public $_statusData = array(
         0 => 'Không sử dụng',

@@ -2,25 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6896d898-2ecb-47b8-9f71-9694737ebdb6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.htaccess" afterPath="$PROJECT_DIR$/app/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/controllers/BackendController.php" afterPath="$PROJECT_DIR$/app/backend/controllers/BackendController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/models/Category.php" afterPath="$PROJECT_DIR$/app/common/models/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/models/CategorySearch.php" afterPath="$PROJECT_DIR$/app/common/models/CategorySearch.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/controllers/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/controllers/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/controllers/DefaultController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/models/LoginForm.php" afterPath="$PROJECT_DIR$/app/common/models/LoginForm.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/models/Manufacturer.php" afterPath="$PROJECT_DIR$/app/common/models/Manufacturer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/controllers/SiteController.php" afterPath="$PROJECT_DIR$/app/backend/controllers/SiteController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/models/Software.php" afterPath="$PROJECT_DIR$/app/common/models/Software.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/views/default/_form.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/views/default/_form.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/views/default/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/views/default/create.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/views/default/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/views/default/index.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/views/default/index.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/views/default/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/views/site/index.php" afterPath="$PROJECT_DIR$/app/backend/views/site/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/magicento.xml" afterPath="$PROJECT_DIR$/.idea/magicento.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_form.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/views/default/create.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/views/default/create.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/create.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/create.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/web/css/custom-styles.css" afterPath="$PROJECT_DIR$/app/backend/web/css/custom-styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/index.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/views/site/login.php" afterPath="$PROJECT_DIR$/app/backend/views/site/login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/config/main.php" afterPath="$PROJECT_DIR$/app/backend/config/main.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/views/layouts/main.php" afterPath="$PROJECT_DIR$/app/backend/views/layouts/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/views/default/update.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/views/default/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/views/default/update.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/views/default/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/category/views/default/view.php" afterPath="$PROJECT_DIR$/app/backend/modules/category/views/default/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/software/views/default/view.php" afterPath="$PROJECT_DIR$/app/backend/modules/software/views/default/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/config/main.php" afterPath="$PROJECT_DIR$/app/common/config/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/frontend/config/main.php" afterPath="$PROJECT_DIR$/app/frontend/config/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/update.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/update.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/view.php" afterPath="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Software-Contact.iws" />
@@ -44,28 +45,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="custom-styles.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/backend/web/css/custom-styles.css">
+      <file leaf-file-name="_form.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="12" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-              <folding />
+            <state line="17" column="0" selection-start="431" selection-end="431" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="833">
+              <folding>
+                <element signature="e#7#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/backend/config/main.php">
+      <file leaf-file-name="UploadForm.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/common/models/UploadForm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="65" selection-start="690" selection-end="690" vertical-scroll-proportion="0.5091514" vertical-offset="51" max-vertical-offset="1088">
-              <folding />
+            <state line="12" column="29" selection-start="208" selection-end="208" vertical-scroll-proportion="0.33830845" vertical-offset="0" max-vertical-offset="603">
+              <folding>
+                <element signature="e#32#51#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/backend/views/layouts/main.php">
+      <file leaf-file-name="Manufacturer.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/common/models/Manufacturer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="47" selection-start="385" selection-end="385" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1326">
+            <state line="36" column="5" selection-start="661" selection-end="661" vertical-scroll-proportion="-13.730769" vertical-offset="255" max-vertical-offset="1343">
+              <folding>
+                <element signature="e#33#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="14" selection-start="734" selection-end="734" vertical-scroll-proportion="-3.4230769" vertical-offset="285" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -89,22 +105,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/backend/web/css/site.css" />
-        <option value="$PROJECT_DIR$/app/backend/modules/category/views/default/view.php" />
-        <option value="$PROJECT_DIR$/app/common/models/Software.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/software/views/default/create.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/category/views/default/_form.php" />
-        <option value="$PROJECT_DIR$/app/common/models/Category.php" />
-        <option value="$PROJECT_DIR$/app/common/models/CategorySearch.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/software/views/default/_form.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/category/views/default/update.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/software/views/default/update.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/software/views/default/view.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/category/views/default/index.php" />
-        <option value="$PROJECT_DIR$/app/backend/modules/software/views/default/index.php" />
         <option value="$PROJECT_DIR$/app/backend/views/layouts/main.php" />
-        <option value="$PROJECT_DIR$/app/backend/web/css/custom-styles.css" />
+        <option value="$PROJECT_DIR$/app/common/models/Software.php" />
         <option value="$PROJECT_DIR$/app/backend/config/main.php" />
+        <option value="$PROJECT_DIR$/app/backend/controllers/BackendController.php" />
+        <option value="$PROJECT_DIR$/app/common/models/StandardModel.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/controllers/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/common/models/Manufacturer.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/create.php" />
+        <option value="$PROJECT_DIR$/app/backend/web/css/custom-styles.css" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/index.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/update.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/view.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/category/views/default/create.php" />
+        <option value="$PROJECT_DIR$/app/common/models/Category.php" />
+        <option value="$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_form.php" />
+        <option value="$PROJECT_DIR$/app/common/models/UploadForm.php" />
       </list>
     </option>
   </component>
@@ -141,7 +157,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -188,6 +203,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -211,6 +266,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -283,6 +360,10 @@
               <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -349,8 +430,30 @@
               <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="software" />
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manufacturer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,7 +479,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="software" />
+              <option name="myItemId" value="manufacturer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -410,7 +513,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="software" />
+              <option name="myItemId" value="manufacturer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -439,28 +542,6 @@
               <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Software-Contact" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Software-Contact" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="category" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -523,6 +604,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="category" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Software-Contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -554,6 +657,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -615,7 +719,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23211446" sideWeight="0.67328244" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25596184" sideWeight="0.67328244" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -642,113 +746,123 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/view.php">
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="383" selection-end="383" vertical-scroll-proportion="-6.6923075" vertical-offset="64" max-vertical-offset="748" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/common/models/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="-6.5384617" vertical-offset="102" max-vertical-offset="1207" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/vendor/yiisoft/yii2/db/ActiveRecord.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="27" selection-start="10551" selection-end="10551" vertical-scroll-proportion="0.34797892" vertical-offset="4273" max-vertical-offset="11135">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/controllers/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="2227">
+        <state line="44" column="26" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.6766169" vertical-offset="323" max-vertical-offset="935">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="10" selection-start="389" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="595">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/common/models/CategorySearch.php">
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/_search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="21" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.0" vertical-offset="1394" max-vertical-offset="1547">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/software/views/default/_form.php">
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="67" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1003">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="5.8846154" vertical-offset="153" max-vertical-offset="816">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/update.php">
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/create.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="33" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/software/views/default/update.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="45" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/software/views/default/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/common/models/Software.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="687" selection-end="687" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1853">
+        <state line="14" column="45" selection-start="343" selection-end="343" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="459">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="33" selection-start="992" selection-end="992" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1258">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1241">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/modules/software/views/default/index.php">
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/update.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="13" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.50510204" vertical-offset="553" max-vertical-offset="1377">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/views/default/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="328" selection-end="328" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/category/controllers/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/common/models/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="32" selection-start="333" selection-end="333" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="1224">
+          <folding>
+            <element signature="e#33#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/controllers/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="959" selection-end="959" vertical-scroll-proportion="-7.5" vertical-offset="332" max-vertical-offset="2465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="474" selection-end="474" vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="14" selection-start="734" selection-end="734" vertical-scroll-proportion="-3.4230769" vertical-offset="285" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/backend/modules/manufacturer/views/default/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="431" selection-end="431" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="833">
           <folding>
             <element signature="e#7#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/views/layouts/main.php">
+    <entry file="file://$PROJECT_DIR$/app/common/models/Manufacturer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="47" selection-start="385" selection-end="385" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1326">
-          <folding />
+        <state line="36" column="5" selection-start="661" selection-end="661" vertical-scroll-proportion="-13.730769" vertical-offset="255" max-vertical-offset="1343">
+          <folding>
+            <element signature="e#33#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/web/css/custom-styles.css">
+    <entry file="file://$PROJECT_DIR$/app/common/models/UploadForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="12" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/backend/config/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="65" selection-start="690" selection-end="690" vertical-scroll-proportion="0.5091514" vertical-offset="51" max-vertical-offset="1088">
-          <folding />
+        <state line="12" column="29" selection-start="208" selection-end="208" vertical-scroll-proportion="0.33830845" vertical-offset="0" max-vertical-offset="603">
+          <folding>
+            <element signature="e#32#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

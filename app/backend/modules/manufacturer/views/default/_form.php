@@ -10,11 +10,17 @@ use yii\widgets\ActiveForm;
 
 <div class="manufacturer-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'logo')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'logo')->fileInput() ?>
+
+    <?php
+    if ($model->logo && file_exists(Yii::$app->params['uploadPath'] . $model->logo)) {
+        echo Html::img(Yii::$app->params['uploadUrl'] . $model->logo, ['style' => 'max-width: 200px; margin-bottom: 15px; margin-top: -10px !important;']);
+    }
+    ?>
 
     <?= $form->field($model, 'introduction')->textarea(['rows' => 6]) ?>
 

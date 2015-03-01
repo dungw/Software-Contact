@@ -9,6 +9,8 @@ use common\models\ManufacturerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * DefaultController implements the CRUD actions for Manufacturer model.
@@ -62,9 +64,20 @@ class DefaultController extends BackendController
     public function actionCreate()
     {
         $model = new Manufacturer();
+        if (Yii::$app->request->isPost) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (Yii::$app->request->isPost) {
+                $model->load(Yii::$app->request->post());
+
+                // upload logo
+                $logo = $model->uploadFile('logo', 'logo');
+                if ($logo) {
+                    $model->logo = $logo;
+                }
+
+                $model->save();
+                return $this->redirect(['create']);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -81,9 +94,21 @@ class DefaultController extends BackendController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $logo = $model->logo;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+
+            // change logo
+            $newLogo = $model->uploadFile('logo', 'logo');
+            if ($newLogo) {
+                $model->logo = $newLogo;
+            } else {
+                $model->logo = $logo;
+            }
+
+            $model->save();
+            return $this->redirect(['view', 'id' => $id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

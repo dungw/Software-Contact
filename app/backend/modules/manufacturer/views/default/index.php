@@ -7,34 +7,42 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ManufacturerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Manufacturers';
+$this->title = 'Nhà sản xuất';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="manufacturer-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Manufacturer', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
+    <?php
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            [
+                'attribute' => 'id',
+                'options' => [
+                    'width' => '8%'
+                ]
+            ],
             'name',
-            'logo',
-            'introduction:ntext',
+            [
+                'attribute' => 'logo',
+                'value' => function($model) {
+                        return '<img class="logo-list" src="' . Yii::$app->params['uploadUrl'] . $model->logo . '">';
+                    },
+                'format' => 'html',
+            ],
+            'phone',
             'address',
-            // 'phone',
-            // 'website',
-            // 'email:email',
-            // 'established',
-
+            'website',
+            'email:email',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\StandardModel;
 
 /**
  * This is the model class for table "category".
@@ -12,12 +13,12 @@ use Yii;
  * @property string $cat_description
  * @property integer $status
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends StandardModel
 {
 
     public $_statusData = array(
-        0 => 'Không sử dụng',
         1 => 'Kích hoạt',
+        0 => 'Không sử dụng',
     );
 
     /**

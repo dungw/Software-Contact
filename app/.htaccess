@@ -1,26 +1,13 @@
-# Enable mod_rewrite
+# prevent directory listings
+Options -Indexes
+# follow symbolic links
+Options FollowSymlinks
 RewriteEngine on
 
-# Specify the folder in which the application resides.
-# Use / if the application is in the root.
-RewriteBase /
+RewriteCond %{REQUEST_URI} ^/admin/$
+RewriteRule ^(admin)/$ /$1 [R=301,L]
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteRule ^admin(/.+)?$ /backend/web/$1 [L,PT]
 
-# Rewrite to correct domain to avoid canonicalization problems
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
-
-# Rewrite URLs ending in /index.php or /index.html to /
-RewriteCond %{THE_REQUEST} ^GET\ .*/index\.(php|html?)\ HTTP
-RewriteRule ^(.*)index\.(php|html?)$ $1 [R=301,L]
-
-# if a directory or a file exists, use it directly
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# otherwise forward it to index.php
-RewriteRule ^.*$ index.php [L]
+RewriteCond %{REQUEST_URI} ^.*$
+RewriteRule ^(.*)$ /frontend/web/$1

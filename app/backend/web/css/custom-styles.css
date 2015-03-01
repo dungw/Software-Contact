@@ -29,10 +29,24 @@ h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 10px !important;
 }
 
+.login-block {
+    width: 500px;
+    border: 1px solid #C0C0C0;
+    padding: 15px;
+}
+
+.logo-list {
+    max-width: 150px;
+    max-height: 100px;
+}
+
 /*  Change width by screen  */
 @media screen and (max-width: 600px) {
     .form-control {
         width: 100% !important;
+    }
+    .login-block {
+        width: 80% !important;
     }
 }
 

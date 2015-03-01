@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'homeUrl' => '/admin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -23,9 +24,13 @@ return [
         ],
     ],
     'components' => [
+        'request' => [
+            'baseUrl' => '/admin',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'authTimeout' => 5,
+            'enableAutoLogin' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -43,16 +48,6 @@ return [
             'identityClass' => 'common\models\User', // User must implement the IdentityInterface
             'enableAutoLogin' => true,
         ],
-
-//        'urlManager' => [
-//            'enablePrettyUrl' => false,
-//            'showScriptName' => false,
-//            'enableStrictParsing' => true,
-//            'rules' => [
-//                'category' => 'category/default/index',
-//                'software' => 'software/default/index',
-//            ],
-//        ],
     ],
     'params' => $params,
 ];
