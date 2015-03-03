@@ -5,6 +5,7 @@ namespace backend\modules\software\controllers;
 use Yii;
 use common\models\Software;
 use common\models\SoftwareSearch;
+use common\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,7 +66,18 @@ class DefaultController extends BackendController {
     {
         $model = new Software();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (Yii::$app->request->isPost) {
+
+            $model->load(Yii::$app->request->post());
+
+            // upload picture
+            $picture = $model->uploadFile('picture', 'software');
+            if ($picture) {
+                $model->picture = $picture;
+            }
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,12 +95,31 @@ class DefaultController extends BackendController {
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldPicture = $model->picture;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        // get categories
+        $cateSearch = new CategorySearch();
+        $cateModels = $cateSearch->search(array())->getModels();
+        $categories = $cateSearch->prepareForSelect($cateModels);
+
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+
+            // change picture
+            $newPicture = $model->uploadFile('picture', 'software');
+            if ($newPicture) {
+                $model->picture = $newPicture;
+            } else {
+                $model->picture = $oldPicture;
+            }
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'categories' => $categories,
             ]);
         }
     }

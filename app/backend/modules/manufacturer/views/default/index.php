@@ -29,21 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id',
                 'options' => [
                     'width' => '8%'
-                ]
+                ],
             ],
             'name',
+//            [
+//                'attribute' => 'logo',
+//                'value' => function($model) {
+//                        return '<img class="logo-list" src="' . Yii::$app->params['uploadUrl'] . $model->logo . '">';
+//                    },
+//                'format' => 'html',
+//                'filter' => false,
+//            ],
+            'phone',
             [
-                'attribute' => 'logo',
+                'attribute' => 'website',
                 'value' => function($model) {
-                        return '<img class="logo-list" src="' . Yii::$app->params['uploadUrl'] . $model->logo . '">';
+                        return '<a href="'. $model->website .'">' . $model->website . '</a>';
                     },
                 'format' => 'html',
             ],
-            'phone',
-            'address',
-            'website',
             'email:email',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options' => [
+                    'width' => '8%',
+                ],
+            ],
         ],
     ]); ?>
 

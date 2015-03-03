@@ -9,9 +9,6 @@ use common\models\CategorySearch;
 /* @var $form yii\widgets\ActiveForm */
 
 $attributeLabels = $model->attributeLabels();
-$categorySearch = new CategorySearch();
-$categoryModels = $categorySearch->search(array())->getModels();
-$categoryData = $categorySearch->prepareForSelect($categoryModels);
 ?>
 
 <div class="software-form">
@@ -20,16 +17,20 @@ $categoryData = $categorySearch->prepareForSelect($categoryModels);
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
-<!--    --><?//= $form->field($model, 'cate_id')->textInput() ?>
-
     <div class="form-group">
         <label class="control-label"><?php echo $attributeLabels['cate_id'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'cate_id', $categoryData) ?>
+        <?= Html::activeDropDownList($model, 'cate_id', $categories) ?>
     </div>
 
     <?= $form->field($model, 'manufacture_id')->textInput() ?>
 
-    <?= $form->field($model, 'picture')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'picture')->fileInput() ?>
+
+    <?php
+    if ($model->picture && file_exists(Yii::$app->params['uploadPath'] . $model->picture)) {
+        echo Html::img(Yii::$app->params['uploadUrl'] . $model->picture, ['style' => 'max-width: 200px; margin-bottom: 15px; margin-top: -10px !important;']);
+    }
+    ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

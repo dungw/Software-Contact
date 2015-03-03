@@ -49,10 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
             ],
             [
-                'attribute' => 'picture',
-                'filter' => false,
-            ],
-            [
                 'attribute' => 'status',
                 'format' => 'text',
                 'options' => [

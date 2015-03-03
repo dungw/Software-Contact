@@ -10,7 +10,6 @@ body {
     font-size: 12px !important;
     padding: 3px 10px !important;
     height: 25px !important;
-    
 }
 
 textarea.form-control {
@@ -36,8 +35,8 @@ h1, .h1, h2, .h2, h3, .h3 {
 }
 
 .logo-list {
-    max-width: 150px;
-    max-height: 100px;
+    max-width: 100px;
+    max-height: 70px;
 }
 
 /*  Change width by screen  */

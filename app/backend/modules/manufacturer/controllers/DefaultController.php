@@ -65,19 +65,16 @@ class DefaultController extends BackendController
     {
         $model = new Manufacturer();
         if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
 
-            if (Yii::$app->request->isPost) {
-                $model->load(Yii::$app->request->post());
-
-                // upload logo
-                $logo = $model->uploadFile('logo', 'logo');
-                if ($logo) {
-                    $model->logo = $logo;
-                }
-
-                $model->save();
-                return $this->redirect(['create']);
+            // upload logo
+            $logo = $model->uploadFile('logo', 'logo');
+            if ($logo) {
+                $model->logo = $logo;
             }
+
+            $model->save();
+            return $this->redirect(['create']);
         } else {
             return $this->render('create', [
                 'model' => $model,
