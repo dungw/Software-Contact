@@ -15,6 +15,8 @@ use common\models\StandardModel;
  */
 class Category extends StandardModel
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_DEACTIVE = 0;
 
     public $_statusData = array(
         1 => 'Kích hoạt',

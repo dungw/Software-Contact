@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Cập nhật phần mềm: ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Phần mềm', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Cập nhật';
 ?>
 <div class="software-update">
 
@@ -17,6 +17,8 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_form', [
         'model' => $model,
         'categories' => $categories,
+        'manufacturers' => $manufacturers,
+        'slide' => $slide,
     ]) ?>
 
 </div>

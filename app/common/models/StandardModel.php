@@ -8,11 +8,7 @@ use common\models\UploadForm;
 
 class StandardModel extends ActiveRecord {
 
-    /**
-     * Process upload of image
-     *
-     * @return mixed the uploaded image instance
-     */
+    // Upload file function
     public function uploadFile($attribute, $subfolder = '') {
         $returnPath = '';
 
@@ -29,11 +25,25 @@ class StandardModel extends ActiveRecord {
         return $returnPath;
     }
 
-    /**
-     * Process deletion of image
-     *
-     * @return boolean the status of deletion
-     */
+    // Upload multiple file function
+    public function uploadFiles($attribute, $subfolder = '') {
+        $savePath = array();
+        $model = new UploadForm();
+        $model->file = UploadedFile::getInstancesByName($attribute);
+
+        if ($model->file && $model->validate()) {
+            foreach ($model->file as $file) {
+
+                // get the new name of file
+                $newFileName = $file->baseName . '_' . time() . '.' . $file->extension;
+                $file->saveAs(Yii::$app->params['uploadPath'] . $subfolder . '/' . $newFileName);
+                $savePath[] = $subfolder . '/' . $newFileName;
+            }
+        }
+        return $savePath;
+    }
+
+    // Delete file function
     public function deleteImage($path) {
 
         // check if file exists on server
@@ -47,5 +57,20 @@ class StandardModel extends ActiveRecord {
         }
 
         return true;
+    }
+
+    /**
+     * @author Vuong Dung
+     * @param $model
+     */
+    public static function prepareForSelect($models, $key, $value) {
+        $data = array();
+        if (!empty($models)) {
+            foreach ($models as $model) {
+                if (isset($model->$key) && isset($model->$value))
+                $data[$model->$key] = $model->$value;
+            }
+        }
+        return $data;
     }
 }

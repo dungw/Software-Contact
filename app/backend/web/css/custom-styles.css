@@ -39,6 +39,23 @@ h1, .h1, h2, .h2, h3, .h3 {
     max-height: 70px;
 }
 
+.show-img {
+    border: 1px solid #C0C0C0;
+    max-width: 200px;
+    margin-bottom: 15px;
+    margin-top: -10px !important;
+    padding: 5px;
+}
+
+.show-small-img {
+    border: 1px solid #C0C0C0;
+    max-width: 100px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    margin-top: -10px !important;
+    padding: 5px;
+}
+
 /*  Change width by screen  */
 @media screen and (max-width: 600px) {
     .form-control {

@@ -2,10 +2,11 @@
 
 namespace backend\modules\software\controllers;
 
+use common\models\Category;
 use Yii;
 use common\models\Software;
 use common\models\SoftwareSearch;
-use common\models\CategorySearch;
+use common\models\Manufacturer;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -98,9 +99,19 @@ class DefaultController extends BackendController {
         $oldPicture = $model->picture;
 
         // get categories
-        $cateSearch = new CategorySearch();
-        $cateModels = $cateSearch->search(array())->getModels();
-        $categories = $cateSearch->prepareForSelect($cateModels);
+        $collections = Category::find()
+            ->where(['status' => Category::STATUS_ACTIVE])
+            ->all();
+        $categories = Category::prepareForSelect($collections, 'cat_id', 'cat_name');
+
+        // get manufacturer
+        $collections = Manufacturer::find()
+            ->where(['status' => Manufacturer::STATUS_ACTIVE])
+            ->all();
+        $manufacturers = Manufacturer::prepareForSelect($collections, 'id', 'name');
+
+        // get current slide image
+        $currentSlide = $model->getSlide($id);
 
         if (Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->post());
@@ -113,6 +124,22 @@ class DefaultController extends BackendController {
                 $model->picture = $oldPicture;
             }
 
+            // upload slide image
+            $slide = $model->uploadFiles('slide', 'slide');
+
+            // insert to software_picture table
+            if (!empty($slide)) {
+                foreach ($slide as $img) {
+                    Yii::$app->db->createCommand()->insert('software_picture', [
+                        'software_id' => $id,
+                        'path' => $img,
+                    ])->execute();
+
+                    // return id
+                    $lastId = Yii::$app->db->getLastInsertID();
+                }
+            }
+
             $model->save();
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -120,6 +147,8 @@ class DefaultController extends BackendController {
             return $this->render('update', [
                 'model' => $model,
                 'categories' => $categories,
+                'manufacturers' => $manufacturers,
+                'slide' => $currentSlide,
             ]);
         }
     }

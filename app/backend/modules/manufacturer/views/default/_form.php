@@ -16,11 +16,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'logo')->fileInput() ?>
 
-    <?php
-    if ($model->logo && file_exists(Yii::$app->params['uploadPath'] . $model->logo)) {
-        echo Html::img(Yii::$app->params['uploadUrl'] . $model->logo, ['style' => 'max-width: 200px; margin-bottom: 15px; margin-top: -10px !important;']);
-    }
-    ?>
+    <div class="form-group">
+        <?php
+        if ($model->logo && file_exists(Yii::$app->params['uploadPath'] . $model->logo)) {
+            echo Html::img(Yii::$app->params['uploadUrl'] . $model->logo, ['class' => 'show-img']);
+        }
+        ?>
+    </div>
 
     <?= $form->field($model, 'introduction')->textarea(['rows' => 6]) ?>
 

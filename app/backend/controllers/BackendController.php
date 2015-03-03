@@ -24,4 +24,6 @@ class BackendController extends Controller {
         Yii::$app->params['uploadUrl'] = Yii::$app->urlManager->baseUrl . '/uploads/';
     }
 
+
+
 }

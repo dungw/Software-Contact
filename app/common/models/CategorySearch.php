@@ -69,17 +69,5 @@ class CategorySearch extends Category
         return $dataProvider;
     }
 
-    /**
-     * @author Vuong Dung
-     * @param $model
-     */
-    public function prepareForSelect($models = array()) {
-        $data = array();
-        if (!empty($models)) {
-            foreach ($models as $model) {
-                $data[$model->cat_id] = $model->cat_name;
-            }
-        }
-        return $data;
-    }
+
 }

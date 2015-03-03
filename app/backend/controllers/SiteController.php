@@ -51,6 +51,7 @@ class SiteController extends BackendController
     public function actions()
     {
         return [
+            'thumb' => 'iutbay\yii2imagecache\ThumbAction',
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],

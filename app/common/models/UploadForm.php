@@ -10,7 +10,7 @@ class UploadForm extends Model {
 
     public function rules() {
         return [
-            [['file'], 'file'],
+            [['file'], 'file', 'maxFiles' => 10],
         ];
     }
 

@@ -101,4 +101,13 @@ class Software extends StandardModel
     {
         return $this->hasMany(SoftwareFeature::className(), ['software_id' => 'id']);
     }
+
+    public function getSlide($softwareId) {
+        if ($softwareId > 0) {
+            $slide = Yii::$app->db->createCommand('SELECT * FROM software_picture WHERE software_id = '. $softwareId)
+                ->queryAll();
+            return $slide;
+        }
+        return false;
+    }
 }

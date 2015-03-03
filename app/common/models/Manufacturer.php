@@ -22,6 +22,9 @@ use common\models\StandardModel;
  */
 class Manufacturer extends StandardModel
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_DEACTIVE = 0;
+
     /**
      * @inheritdoc
      */

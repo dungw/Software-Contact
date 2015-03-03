@@ -13,7 +13,7 @@ $attributeLabels = $model->attributeLabels();
 
 <div class="software-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
@@ -22,15 +22,36 @@ $attributeLabels = $model->attributeLabels();
         <?= Html::activeDropDownList($model, 'cate_id', $categories) ?>
     </div>
 
-    <?= $form->field($model, 'manufacture_id')->textInput() ?>
+    <div class="form-group">
+        <label class="control-label"><?php echo $attributeLabels['manufacture_id'] ?></label><br>
+        <?= Html::activeDropDownList($model, 'manufacture_id', $manufacturers) ?>
+    </div>
 
     <?= $form->field($model, 'picture')->fileInput() ?>
 
-    <?php
-    if ($model->picture && file_exists(Yii::$app->params['uploadPath'] . $model->picture)) {
-        echo Html::img(Yii::$app->params['uploadUrl'] . $model->picture, ['style' => 'max-width: 200px; margin-bottom: 15px; margin-top: -10px !important;']);
-    }
-    ?>
+    <div class="form-group">
+        <?php
+        if ($model->picture && file_exists(Yii::$app->params['uploadPath'] . $model->picture)) {
+            echo Html::img(Yii::$app->params['uploadUrl'] . $model->picture, ['class' => 'show-img']);
+        }
+        ?>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Slide</label>
+        <?php echo Html::input('file', 'slide[]', null, ['multiple' => true]) ?>
+    </div>
+
+    <div class="form-group">
+        <?php
+        if (!empty($slide)) {
+            foreach ($slide as $img) {
+//                echo Html::img(Yii::$app->params['uploadUrl'] . $img['path'], ['class' => 'show-small-img']);
+                echo Yii::$app->imageCache->thumb(Yii::$app->params['uploadUrl'] . $img['path']);
+            }
+        }
+        ?>
+    </div>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
