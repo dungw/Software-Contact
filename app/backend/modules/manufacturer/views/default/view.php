@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'logo',
                 'label' => 'Logo',
-                'value' => '<img src="' . Yii::$app->params['uploadUrl'] . $model->logo . '">',
+                'value' => '<img src="' . Yii::$app->params['uploadUrl'] . $model->getThumbnail($model->logo) . '">',
                 'format' => 'html',
             ],
             'introduction:ntext',

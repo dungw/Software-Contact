@@ -15,6 +15,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,6 +24,9 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?php $this->registerCssFile(Yii::$app->homeUrl . '/css/custom-styles.css') ?>
+    <script type="text/javascript" src="<?php echo Yii::$app->homeUrl . '/js/jquery.js' ?>"></script>
+
+
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -36,12 +40,14 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
+
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Danh mục', 'url' => Url::toRoute(['/category/default/index'])],
-                ['label' => 'Phần mềm', 'url' => Url::toRoute(['/software/default/index'])],
-                ['label' => 'Nhà sản xuất', 'url' => Url::toRoute(['/manufacturer/default/index'])],
+                ['label' => 'Danh mục', 'url' => ['/category/default/index']],
+                ['label' => 'Phần mềm', 'url' => ['/software/default/index']],
+                ['label' => 'Nhà sản xuất', 'url' => ['/manufacturer/default/index']],
             ];
+
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {

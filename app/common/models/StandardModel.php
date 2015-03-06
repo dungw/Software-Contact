@@ -5,46 +5,85 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use common\models\UploadForm;
+use yii\imagine\Image;
 
 class StandardModel extends ActiveRecord {
+
+    public $thumbWidth = 120;
+    public $thumbHeight = 120;
 
     // Upload file function
     public function uploadFile($attribute, $subfolder = '') {
         $returnPath = '';
 
-        $model = new UploadForm();
+        $model = new UploadForm('image');
         $model->file = UploadedFile::getInstance($this, $attribute);
         if ($model->file && $model->validate()) {
 
             // get the new name of file
             $newFileName = $model->file->baseName . '_' . time() . '.' . $model->file->extension;
+
             $model->file->saveAs(Yii::$app->params['uploadPath'] . $subfolder . '/' . $newFileName);
             $returnPath = $subfolder . '/' . $newFileName;
+
+            // create a thumbnail
+            $thumbPath = $subfolder . '/thumb/thumb-' . $newFileName;
+            Image::thumbnail(Yii::$app->params['uploadPath'] . $returnPath, $this->thumbWidth, $this->thumbHeight)
+                ->save(Yii::$app->params['uploadPath'] . $thumbPath, ['quality' => 80]);
         }
 
         return $returnPath;
     }
 
+    // get thumbnail
+    public static function getThumbnail($path) {
+        if ($path) {
+            $ar = explode('/', $path);
+            if (!empty($ar)) {
+                $last = end($ar);
+                $new = 'thumb/thumb-' . $last;
+                $ar[count($ar) - 1] = $new;
+                return implode('/', $ar);
+            }
+        }
+
+        return false;
+    }
+
     // Upload multiple file function
     public function uploadFiles($attribute, $subfolder = '') {
         $savePath = array();
-        $model = new UploadForm();
+        $model = new UploadForm('image', true);
         $model->file = UploadedFile::getInstancesByName($attribute);
 
-        if ($model->file && $model->validate()) {
-            foreach ($model->file as $file) {
+        if ($model->file) {
 
-                // get the new name of file
-                $newFileName = $file->baseName . '_' . time() . '.' . $file->extension;
-                $file->saveAs(Yii::$app->params['uploadPath'] . $subfolder . '/' . $newFileName);
-                $savePath[] = $subfolder . '/' . $newFileName;
+            if ($model->validate()) {
+                foreach ($model->file as $file) {
+
+                    // get the new name of file
+                    $newFileName = $file->baseName . '_' . time() . '.' . $file->extension;
+                    $file->saveAs(Yii::$app->params['uploadPath'] . $subfolder . '/' . $newFileName);
+                    $returnPath = $subfolder . '/' . $newFileName;
+                    $savePath[] = $returnPath;
+
+                    // create a thumbnail
+                    $thumbPath = $subfolder . '/thumb/thumb-' . $newFileName;
+                    Image::thumbnail(Yii::$app->params['uploadPath'] . $returnPath, $this->thumbWidth, $this->thumbHeight)
+                        ->save(Yii::$app->params['uploadPath'] . $thumbPath, ['quality' => 80]);
+
+                }
+            } else {
+                var_dump($model->errors);die;
             }
+
         }
+
         return $savePath;
     }
 
     // Delete file function
-    public function deleteImage($path) {
+    public static function deleteImage($path) {
 
         // check if file exists on server
         if (empty($path) || !file_exists($path)) {

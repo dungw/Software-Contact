@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\CategorySearch;
+use moonland\tinymce\TinyMCE;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Software */
@@ -32,6 +33,7 @@ $attributeLabels = $model->attributeLabels();
     <div class="form-group">
         <?php
         if ($model->picture && file_exists(Yii::$app->params['uploadPath'] . $model->picture)) {
+
             echo Html::img(Yii::$app->params['uploadUrl'] . $model->picture, ['class' => 'show-img']);
         }
         ?>
@@ -46,14 +48,18 @@ $attributeLabels = $model->attributeLabels();
         <?php
         if (!empty($slide)) {
             foreach ($slide as $img) {
-//                echo Html::img(Yii::$app->params['uploadUrl'] . $img['path'], ['class' => 'show-small-img']);
-                echo Yii::$app->imageCache->thumb(Yii::$app->params['uploadUrl'] . $img['path']);
+                if (file_exists(Yii::$app->params['uploadPath'] . $img['path'])) {
+                    echo '<div id="slice-'. $img['id'] .'" class="float-l width-auto">';
+                    echo Html::img(Yii::$app->params['uploadUrl'] . $model->getThumbnail($img['path']), ['class' => 'show-small-img']);
+                    echo '<a data-id="'. $img['id'] .'" class="glyphicon glyphicon-remove remove-img"></a>';
+                    echo '</div>';
+                }
             }
         }
         ?>
     </div>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->widget(TinyMCE::className()); ?>
 
     <?= $form->field($model, 'user_rating')->textInput() ?>
 
@@ -73,3 +79,24 @@ $attributeLabels = $model->attributeLabels();
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script type="text/javascript">
+    $('.remove-img').click(function() {
+        if (confirm('Bạn chắc chắn muốn xóa ảnh này?')) {
+            var id = parseInt($(this).attr('data-id'));
+            $.ajax({
+                type: 'POST',
+                url: '/admin/software/default/remove-img',
+                data: {
+                    id: id
+                },
+                success: function(data) {
+
+                    if (data == 'success') {
+                        $('#slice-' + id).remove();
+                    }
+                }
+            });
+        }
+    });
+</script>

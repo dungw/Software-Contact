@@ -32,8 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'cate_id',
             'manufacture_id',
-            'picture',
-            'description:ntext',
+            [
+                'attribute' => 'picture',
+                'value' => Html::img(Yii::$app->params['uploadUrl'] . $model->getThumbnail($model->picture)),
+                'format' => 'html',
+            ],
+            [
+                'attribute' => 'description',
+                'value' => $model->description,
+                'format' => 'html',
+            ],
             'user_rating',
             'price_range',
             'os_support',

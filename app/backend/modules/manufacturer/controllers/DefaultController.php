@@ -9,8 +9,8 @@ use common\models\ManufacturerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\UploadForm;
 use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * DefaultController implements the CRUD actions for Manufacturer model.
@@ -100,6 +100,11 @@ class DefaultController extends BackendController
             $newLogo = $model->uploadFile('logo', 'logo');
             if ($newLogo) {
                 $model->logo = $newLogo;
+
+                // delete old file
+                $model->deleteImage(Yii::$app->params['uploadPath'] . $model->logo);
+                $model->deleteImage(Yii::$app->params['uploadPath'] . $model->getThumbnail($model->logo));
+
             } else {
                 $model->logo = $logo;
             }

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use moonland\tinymce\TinyMCE;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Manufacturer */
@@ -18,13 +19,13 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?php
-        if ($model->logo && file_exists(Yii::$app->params['uploadPath'] . $model->logo)) {
-            echo Html::img(Yii::$app->params['uploadUrl'] . $model->logo, ['class' => 'show-img']);
+        if ($model->logo && file_exists(Yii::$app->params['uploadPath'] . $model->getThumbnail($model->logo))) {
+            echo Html::img(Yii::$app->params['uploadUrl'] . $model->getThumbnail($model->logo), ['class' => 'show-img']);
         }
         ?>
     </div>
 
-    <?= $form->field($model, 'introduction')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'introduction')->widget(TinyMCE::className()) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?>
 

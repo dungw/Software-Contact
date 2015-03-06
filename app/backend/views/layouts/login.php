@@ -24,24 +24,24 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <?php $this->registerCssFile('@web/css/custom-styles.css') ?>
 </head>
-<body>
-<?php $this->beginBody() ?>
-<div class="wrap">
-    <div class="container" align="center">
-        <div class="login-block" align="left">
-            <?= $content ?>
+<body class="login-body">
+    <?php $this->beginBody() ?>
+    <div class="wrap">
+        <div class="container" align="center">
+            <div class="login-block" align="left">
+                <?= $content ?>
+            </div>
         </div>
     </div>
-</div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; JogCom <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">&copy; JogCom <?= date('Y') ?></p>
+            <p class="pull-right"><?= Yii::powered() ?></p>
+        </div>
+    </footer>
 
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -120,6 +120,11 @@ class DefaultController extends BackendController {
             $newPicture = $model->uploadFile('picture', 'software');
             if ($newPicture) {
                 $model->picture = $newPicture;
+
+                // delete old file
+                $model->deleteImage(Yii::$app->params['uploadPath'] . $oldPicture);
+                $model->deleteImage(Yii::$app->params['uploadPath'] . $model->getThumbnail($oldPicture));
+
             } else {
                 $model->picture = $oldPicture;
             }
@@ -150,6 +155,33 @@ class DefaultController extends BackendController {
                 'manufacturers' => $manufacturers,
                 'slide' => $currentSlide,
             ]);
+        }
+    }
+
+    public function actionRemoveImg() {
+        if (Yii::$app->request->isAjax) {
+            $id = intval(Yii::$app->request->post('id'));
+            if ($id > 0) {
+                $path = Yii::$app->db->createCommand("SELECT path FROM software_picture WHERE id = ". $id)
+                    ->queryOne();
+
+                if ($path['path']) {
+
+                    // delete in db
+                    Yii::$app->db->createCommand()->delete('software_picture', [
+                        'id' => $id
+                    ])->execute();
+
+                    $fullPath = Yii::$app->params['uploadPath'] . $path['path'];
+                    if (file_exists($fullPath)) {
+
+                        // delete file
+                        Software::deleteImage($fullPath);
+                        Software::deleteImage(Software::getThumbnail($fullPath));
+                    }
+                    echo 'success';
+                }
+            }
         }
     }
 

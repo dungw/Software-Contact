@@ -16,7 +16,7 @@ class LoginForm extends Model
     private $_user = false;
 
     // duration login if remember
-    private $rememberDuration = 5;
+    private $rememberDuration = 3600;
 
     /**
      * @inheritdoc
@@ -58,7 +58,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            $duration = $this->rememberMe ? $this->rememberDuration : 1800;
+            $duration = $this->rememberMe ? $this->rememberDuration : 300;
             return Yii::$app->user->login($this->getUser(), $duration);
         } else {
             return false;

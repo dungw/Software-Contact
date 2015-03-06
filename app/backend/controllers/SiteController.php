@@ -60,6 +60,7 @@ class SiteController extends BackendController
 
     public function actionIndex()
     {
+
         return $this->render('index');
     }
 
