@@ -12,10 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="software-create">
 
-    <h3><?= Html::encode($this->title) ?></h3>
+    <h4><?= Html::encode($this->title) ?></h4>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'categories' => $categories,
+        'manufacturers' => $manufacturers,
     ]) ?>
 
 </div>

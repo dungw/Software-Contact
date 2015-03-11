@@ -17,8 +17,6 @@ use backend\controllers\BackendController;
  */
 class DefaultController extends BackendController {
 
-    public $layout = '//column2';
-
     public function behaviors()
     {
         return [
@@ -67,6 +65,14 @@ class DefaultController extends BackendController {
     {
         $model = new Software();
 
+        // get categories
+        $collections = Category::getActiveRecords();
+        $categories = Category::prepareForSelect($collections, 'cat_id', 'cat_name');
+
+        // get manufacturer
+        $collections = Manufacturer::getActiveRecords();
+        $manufacturers = Manufacturer::prepareForSelect($collections, 'id', 'name');
+
         if (Yii::$app->request->isPost) {
 
             $model->load(Yii::$app->request->post());
@@ -83,6 +89,8 @@ class DefaultController extends BackendController {
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categories' => $categories,
+                'manufacturers' => $manufacturers,
             ]);
         }
     }
@@ -99,15 +107,11 @@ class DefaultController extends BackendController {
         $oldPicture = $model->picture;
 
         // get categories
-        $collections = Category::find()
-            ->where(['status' => Category::STATUS_ACTIVE])
-            ->all();
+        $collections = Category::getActiveRecords();
         $categories = Category::prepareForSelect($collections, 'cat_id', 'cat_name');
 
         // get manufacturer
-        $collections = Manufacturer::find()
-            ->where(['status' => Manufacturer::STATUS_ACTIVE])
-            ->all();
+        $collections = Manufacturer::getActiveRecords();
         $manufacturers = Manufacturer::prepareForSelect($collections, 'id', 'name');
 
         // get current slide image

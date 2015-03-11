@@ -20,20 +20,23 @@ $attributeLabels = $model->attributeLabels();
 
     <div class="form-group">
         <label class="control-label"><?php echo $attributeLabels['cate_id'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'cate_id', $categories) ?>
+        <?= Html::activeDropDownList($model, 'cate_id', $categories, ['class' => 'form-select']) ?>
     </div>
 
     <div class="form-group">
         <label class="control-label"><?php echo $attributeLabels['manufacture_id'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'manufacture_id', $manufacturers) ?>
+        <?= Html::activeDropDownList($model, 'manufacture_id', $manufacturers, ['class' => 'form-select']) ?>
     </div>
 
-    <?= $form->field($model, 'picture')->fileInput() ?>
+
+    <div class="form-group">
+        <label class="control-label"><?php echo $attributeLabels['picture'] ?></label><br>
+        <?= Html::input('file', 'picture', '', ['class' => 'form-file']) ?>
+    </div>
 
     <div class="form-group">
         <?php
         if ($model->picture && file_exists(Yii::$app->params['uploadPath'] . $model->picture)) {
-
             echo Html::img(Yii::$app->params['uploadUrl'] . $model->picture, ['class' => 'show-img']);
         }
         ?>
@@ -41,7 +44,7 @@ $attributeLabels = $model->attributeLabels();
 
     <div class="form-group">
         <label class="control-label">Slide</label>
-        <?php echo Html::input('file', 'slide[]', null, ['multiple' => true]) ?>
+        <?php echo Html::input('file', 'slide[]', null, ['multiple' => true, 'class' => 'form-file']) ?>
     </div>
 
     <div class="form-group">
@@ -69,7 +72,7 @@ $attributeLabels = $model->attributeLabels();
 
     <div class="form-group">
         <label class="control-label"><?php echo $attributeLabels['status'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'status', $model->_statusData) ?>
+        <?= Html::activeDropDownList($model, 'status', $model->_statusData, ['class' => 'form-select']) ?>
     </div>
 
     <div class="form-group">

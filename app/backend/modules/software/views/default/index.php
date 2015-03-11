@@ -13,12 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="software-index">
 
-    <h3><?= Html::encode($this->title) ?></h3>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Thêm mới', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <h4><?= Html::encode($this->title) ?></h4>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

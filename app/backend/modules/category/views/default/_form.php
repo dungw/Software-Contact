@@ -4,8 +4,21 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\Category;
 use moonland\tinymce\TinyMCE;
+use common\models\Feature;
 
+// get attribute labels
 $attributeLabels = $model->attributeLabels();
+
+// get all features
+$featureModel = Feature::getActiveRecords();
+
+// active features
+$activeFeatureIds = array();
+if (isset($features)) {
+    foreach ($features as $feature) {
+        $activeFeatureIds[] = $feature['id'];
+    }
+}
 ?>
 
 <div class="cu-form">
@@ -14,11 +27,16 @@ $attributeLabels = $model->attributeLabels();
 
     <?= $form->field($model, 'cat_name')->textInput(['maxlength' => 255]) ?>
 
+    <div class="form-group">
+        <label class="control-label" for="category-feature">Tính năng</label><br>
+        <?= Html::listBox('list-feature', $activeFeatureIds, ArrayHelper::map($featureModel, 'id', 'name'), ['class' => 'form-listbox', 'multiple' => true]) ?>
+    </div>
+
     <?= $form->field($model, 'cat_description')->widget(TinyMCE::className()) ?>
 
     <div class="form-group">
         <label class="control-label" for="category-status"><?php echo $attributeLabels['status'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'status', $model->_statusData) ?>
+        <?= Html::activeDropDownList($model, 'status', $model->_statusData, ['class' => 'form-select']) ?>
     </div>
 
     <div class="form-group">

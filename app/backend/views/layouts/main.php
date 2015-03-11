@@ -26,54 +26,22 @@ AppAsset::register($this);
     <?php $this->registerCssFile(Yii::$app->homeUrl . '/css/custom-styles.css') ?>
     <script type="text/javascript" src="<?php echo Yii::$app->homeUrl . '/js/jquery.js' ?>"></script>
 
-
 </head>
 <body>
     <?php $this->beginBody() ?>
     <div class="wrap">
-        <?php
-        if (!Yii::$app->user->isGuest) {
-            NavBar::begin([
-                'brandLabel' => 'Dashboard',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
 
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Danh mục', 'url' => ['/category/default/index']],
-                ['label' => 'Phần mềm', 'url' => ['/software/default/index']],
-                ['label' => 'Nhà sản xuất', 'url' => ['/manufacturer/default/index']],
-            ];
-
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
-            }
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-            ]);
-            NavBar::end();
-        }
-        ?>
+        <?php echo $this->render('top-menu') ?>
 
         <div class="container">
-        <?php
-        if (!Yii::$app->user->isGuest) {
-            echo Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]);
-        }
-        ?>
-        <?= $content ?>
+            <?php
+            if (!Yii::$app->user->isGuest) {
+                echo Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]);
+            }
+            ?>
+            <?= $content ?>
         </div>
     </div>
 

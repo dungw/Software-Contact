@@ -22,6 +22,9 @@ return [
         'manufacturer' => [
             'class' => 'backend\modules\manufacturer\Manufacturer',
         ],
+        'feature' => [
+            'class' => 'backend\modules\feature\Feature',
+        ],
     ],
     'components' => [
         'request' => [

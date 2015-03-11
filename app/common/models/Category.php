@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\models\StandardModel;
+use common\models\Feature;
 
 /**
  * This is the model class for table "category".
@@ -15,13 +16,6 @@ use common\models\StandardModel;
  */
 class Category extends StandardModel
 {
-    const STATUS_ACTIVE = 1;
-    const STATUS_DEACTIVE = 0;
-
-    public $_statusData = array(
-        1 => 'Kích hoạt',
-        0 => 'Không sử dụng',
-    );
 
     /**
      * @inheritdoc
@@ -29,6 +23,20 @@ class Category extends StandardModel
     public static function tableName()
     {
         return 'category';
+    }
+
+    public function getFeature($categoryId) {
+        if ($categoryId > 0) {
+            $sql = 'SELECT t1.*
+                    FROM feature t1
+                    INNER JOIN category_feature t2 ON(t1.id = t2.feature_id)
+                    WHERE t2.category_id = '. $categoryId .' AND t1.status = '.Feature::STATUS_ACTIVE;
+
+            $collations = Yii::$app->db->createCommand($sql)
+                ->queryAll();
+            return $collations;
+        }
+        return null;
     }
 
     public function showStatus() {

@@ -9,6 +9,13 @@ use yii\imagine\Image;
 
 class StandardModel extends ActiveRecord {
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_DEACTIVE = 0;
+
+    public $_statusData = array(
+        1 => 'Kích hoạt',
+        0 => 'Không sử dụng',
+    );
     public $thumbWidth = 120;
     public $thumbHeight = 120;
 
@@ -73,8 +80,6 @@ class StandardModel extends ActiveRecord {
                         ->save(Yii::$app->params['uploadPath'] . $thumbPath, ['quality' => 80]);
 
                 }
-            } else {
-                var_dump($model->errors);die;
             }
 
         }
@@ -111,5 +116,12 @@ class StandardModel extends ActiveRecord {
             }
         }
         return $data;
+    }
+
+    public static function getActiveRecords() {
+        $collations = self::find()
+            ->where(['status' => self::STATUS_ACTIVE])
+            ->all();
+        return $collations;
     }
 }

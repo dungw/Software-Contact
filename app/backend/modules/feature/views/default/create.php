@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Manufacturer */
+/* @var $model common\models\Feature */
 
-$this->title = 'Thêm mới nhà sản xuất';
-$this->params['breadcrumbs'][] = ['label' => 'Nhà sản xuất', 'url' => ['index']];
+$this->title = 'Thêm mới tính năng';
+$this->params['breadcrumbs'][] = ['label' => 'Tính năng', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="manufacturer-create">
+<div class="feature-create">
 
     <h4><?= Html::encode($this->title) ?></h4>
 
