@@ -74,7 +74,7 @@ class DefaultController extends BackendController
             }
 
             $model->save();
-            return $this->redirect(['create']);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -110,7 +110,7 @@ class DefaultController extends BackendController
             }
 
             $model->save();
-            return $this->redirect(['view', 'id' => $id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

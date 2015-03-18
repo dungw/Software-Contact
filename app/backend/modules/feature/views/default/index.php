@@ -34,10 +34,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'attribute' => 'status',
-                'filter' => false,
+                'format' => 'text',
+                'options' => [
+                    'width' => '10%',
+                ],
+                'value' => function ($model) {
+                        return $model->showStatus();
+                    }
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options' => [
+                    'width' => '8%'
+                ]
+            ],
         ],
     ]); ?>
 

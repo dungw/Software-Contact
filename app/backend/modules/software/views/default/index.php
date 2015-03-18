@@ -2,11 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\CategorySearch;
-
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\SoftwareSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use common\models\Category;
+use common\models\Manufacturer;
 
 $this->title = 'Phần mềm';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,16 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'cate_id',
                 'format' => 'text',
-                'filter' => true,
                 'value' => function($model) {
-                        $categorySearch = new CategorySearch();
-                        $category = array_shift($categorySearch->search(array('cat_id' => $model->cate_id))->getModels());
+                        $category = Category::findOne($model->cate_id);
                         return $category->cat_name;
                     },
                 'filter' => false,
             ],
             [
                 'attribute' => 'manufacture_id',
+                'format' => 'text',
+                'value' => function($model) {
+                        $manufacture = Manufacturer::findOne($model->manufacture_id);
+                        return $manufacture->name;
+                    },
                 'filter' => false,
             ],
             [

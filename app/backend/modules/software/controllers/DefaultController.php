@@ -167,7 +167,7 @@ class DefaultController extends BackendController {
                 // save slice picture
                 $this->saveSlice('slide', 'slice', $id);
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else {
 
                 // get the errors

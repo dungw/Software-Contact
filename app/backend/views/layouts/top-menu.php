@@ -1,6 +1,10 @@
 <?php
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\base\Module;
+
+// get current controller
+$module = $this->context->module->id;
 
 if (!Yii::$app->user->isGuest) {
     NavBar::begin([
@@ -13,10 +17,10 @@ if (!Yii::$app->user->isGuest) {
 
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Danh mục', 'url' => ['/category/default/index']],
-        ['label' => 'Phần mềm', 'url' => ['/software/default/index']],
-        ['label' => 'Nhà sản xuất', 'url' => ['/manufacturer/default/index']],
-        ['label' => 'Tính năng', 'url' => ['/feature/default/index']],
+        ['label' => 'Danh mục', 'url' => ['/category/default/index'], 'active' => ($module == 'category')],
+        ['label' => 'Phần mềm', 'url' => ['/software/default/index'], 'active' => ($module == 'software')],
+        ['label' => 'Nhà sản xuất', 'url' => ['/manufacturer/default/index'], 'active' => ($module == 'manufacturer')],
+        ['label' => 'Tính năng', 'url' => ['/feature/default/index'], 'active' => ($module == 'feature')],
     ];
 
     if (Yii::$app->user->isGuest) {
@@ -34,4 +38,3 @@ if (!Yii::$app->user->isGuest) {
     ]);
     NavBar::end();
 }
-?>
