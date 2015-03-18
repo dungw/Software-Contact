@@ -66,6 +66,12 @@ class Manufacturer extends StandardModel
         ];
     }
 
+    // rewrite function _prepareDataSelect
+    public static function _prepareDataSelect($models, $key, $value) {
+        $data[0] = 'Chọn nhà sản xuất';
+        return parent::_prepareDataSelect($models, $key, $value, $data);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

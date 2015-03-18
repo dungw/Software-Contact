@@ -70,10 +70,9 @@ class DefaultController extends BackendController
             $newId = Yii::$app->db->lastInsertID;
 
             // save features
-            $features = Yii::$app->request->post('list-feature');
-            $this->saveFeature($features, $newId);
+            $this->saveFeature('list-feature', $newId);
 
-            return $this->redirect(['view', 'id' => $model->cat_id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,11 +81,13 @@ class DefaultController extends BackendController
     }
 
     // save features of category function
-    protected function saveFeature($features, $categoryId) {
+    protected function saveFeature($inputName, $categoryId) {
+        $features = Yii::$app->request->post($inputName);
+
         if (!empty($features) && $categoryId > 0) {
 
             // get action
-            $action = Yii::$app->controller->action;
+            $action = Yii::$app->controller->action->id;
 
             // delete old record if this is update action
             if ($action == 'update') {
@@ -123,10 +124,9 @@ class DefaultController extends BackendController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             // save features
-            $features = Yii::$app->request->post('list-feature');
-            $this->saveFeature($features, $id);
+            $this->saveFeature('list-feature', $id);
 
-            return $this->redirect(['view', 'id' => $model->cat_id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

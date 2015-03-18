@@ -2,11 +2,11 @@
 
 namespace backend\modules\software\controllers;
 
-use common\models\Category;
 use Yii;
 use common\models\Software;
 use common\models\SoftwareSearch;
 use common\models\Manufacturer;
+use common\models\Category;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -29,10 +29,7 @@ class DefaultController extends BackendController {
         ];
     }
 
-    /**
-     * Lists all Software models.
-     * @return mixed
-     */
+    // index action
     public function actionIndex()
     {
         $searchModel = new SoftwareSearch();
@@ -44,11 +41,7 @@ class DefaultController extends BackendController {
         ]);
     }
 
-    /**
-     * Displays a single Software model.
-     * @param integer $id
-     * @return mixed
-     */
+    // view action
     public function actionView($id)
     {
         return $this->render('view', [
@@ -56,112 +49,185 @@ class DefaultController extends BackendController {
         ]);
     }
 
-    /**
-     * Creates a new Software model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    // create new action
     public function actionCreate()
     {
         $model = new Software();
 
+        // data to parse
+        $parseData = ['model' => $model];
+
         // get categories
         $collections = Category::getActiveRecords();
-        $categories = Category::prepareForSelect($collections, 'cat_id', 'cat_name');
+        $categories = Category::_prepareDataSelect($collections, 'cat_id', 'cat_name');
+        $parseData['categories'] = $categories;
 
         // get manufacturer
         $collections = Manufacturer::getActiveRecords();
-        $manufacturers = Manufacturer::prepareForSelect($collections, 'id', 'name');
+        $manufacturers = Manufacturer::_prepareDataSelect($collections, 'id', 'name');
+        $parseData['manufacturers'] = $manufacturers;
 
         if (Yii::$app->request->isPost) {
-
             $model->load(Yii::$app->request->post());
 
-            // upload picture
-            $picture = $model->uploadFile('picture', 'software');
-            if ($picture) {
-                $model->picture = $picture;
+            // validate data
+            if ($model->validate()) {
+                $model->save();
+
+                // get last id
+                $softwareId = Yii::$app->db->getLastInsertID();
+
+                // save features
+                $this->saveFeature('features-list', $softwareId);
+
+                // upload picture
+                $picture = $model->uploadFile('picture', 'software');
+                if ($picture) {
+                    $model->picture = $picture;
+                }
+
+                // save slice picture
+                $this->saveSlice('slide', 'slice', $softwareId);
+
+                return $this->redirect(['index']);
+            } else {
+
+                // get the errors
+                $errors = $model->getErrors();
+                $parseData['errors'] = $errors;
             }
-
-            $model->save();
-
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'categories' => $categories,
-                'manufacturers' => $manufacturers,
-            ]);
         }
+
+        return $this->render('create', $parseData);
     }
 
-    /**
-     * Updates an existing Software model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
+    // update action
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        // data to parse
+        $parseData = ['model' => $model];
+
+        // get the old picture
         $oldPicture = $model->picture;
 
         // get categories
         $collections = Category::getActiveRecords();
-        $categories = Category::prepareForSelect($collections, 'cat_id', 'cat_name');
+        $categories = Category::_prepareDataSelect($collections, 'cat_id', 'cat_name');
+        $parseData['categories'] = $categories;
 
         // get manufacturer
         $collections = Manufacturer::getActiveRecords();
-        $manufacturers = Manufacturer::prepareForSelect($collections, 'id', 'name');
+        $manufacturers = Manufacturer::_prepareDataSelect($collections, 'id', 'name');
+        $parseData['manufacturers'] = $manufacturers;
 
         // get current slide image
         $currentSlide = $model->getSlide($id);
+        $parseData['slide'] = $currentSlide;
+
+        // get active features
+        $features = $model->getFeatures($id);
+        if (!empty($features)) {
+            foreach ($features as $feature) {
+                $parseData['activeFeatures'][] = $feature['id'];
+            }
+        }
+
+        // get features of current category
+        if ($model->cate_id > 0) {
+            $collections = Category::getFeature($model->cate_id);
+            $parseData['categoryFeatures'] = $model->_prepareDataSelect($collections, 'id', 'name', []);
+        }
 
         if (Yii::$app->request->isPost) {
             $model->load(Yii::$app->request->post());
 
-            // change picture
-            $newPicture = $model->uploadFile('picture', 'software');
-            if ($newPicture) {
-                $model->picture = $newPicture;
+            // validate data
+            if ($model->validate()) {
 
-                // delete old file
-                $model->deleteImage(Yii::$app->params['uploadPath'] . $oldPicture);
-                $model->deleteImage(Yii::$app->params['uploadPath'] . $model->getThumbnail($oldPicture));
+                // save features
+                $this->saveFeature('features-list', $id);
 
-            } else {
-                $model->picture = $oldPicture;
-            }
+                // change picture
+                $newPicture = $model->uploadFile('picture', 'software');
+                if ($newPicture) {
+                    $model->picture = $newPicture;
 
-            // upload slide image
-            $slide = $model->uploadFiles('slide', 'slide');
+                    // delete old file
+                    $model->deleteImage(Yii::$app->params['uploadPath'] . $oldPicture);
+                    $model->deleteImage(Yii::$app->params['uploadPath'] . $model->getThumbnail($oldPicture));
 
-            // insert to software_picture table
-            if (!empty($slide)) {
-                foreach ($slide as $img) {
-                    Yii::$app->db->createCommand()->insert('software_picture', [
-                        'software_id' => $id,
-                        'path' => $img,
-                    ])->execute();
-
-                    // return id
-                    $lastId = Yii::$app->db->getLastInsertID();
+                } else {
+                    $model->picture = $oldPicture;
                 }
+
+                $model->save();
+
+                // save slice picture
+                $this->saveSlice('slide', 'slice', $id);
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+
+                // get the errors
+                $errors = $model->getErrors();
+                $parseData['errors'] = $errors;
             }
+        }
 
-            $model->save();
+        return $this->render('update', $parseData);
+    }
 
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'categories' => $categories,
-                'manufacturers' => $manufacturers,
-                'slide' => $currentSlide,
-            ]);
+    // save slice picture
+    protected function saveSlice($inputName, $subFolder, $id) {
+
+        // get model
+        $model = $this->findModel($id);
+
+        // upload slide image
+        $slide = $model->uploadFiles($inputName, $subFolder);
+
+        // insert to software_picture table
+        if (!empty($slide)) {
+            foreach ($slide as $img) {
+                Yii::$app->db->createCommand()->insert('software_picture', [
+                    'software_id' => $id,
+                    'path' => $img,
+                ])->execute();
+            }
         }
     }
 
+    // save feature
+    protected function saveFeature($inputName, $id) {
+        $features = Yii::$app->request->post($inputName);
+
+        if (!empty($features) && $id > 0) {
+
+            // get action
+            $action = Yii::$app->controller->action->id;
+
+            // delete old record if this is update action
+            if ($action == 'update') {
+                Yii::$app->db->createCommand()->delete('software_feature', [
+                    'software_id' => $id,
+                ])->execute();
+            }
+
+            // insert new features
+            $data = array();
+            foreach ($features as $feature) {
+                $data[] = [$feature, $id];
+            }
+            Yii::$app->db->createCommand()
+                ->batchInsert('software_feature', ['feature_id', 'software_id'], $data)
+                ->execute();
+        }
+        return;
+    }
+
+    // remove image action
     public function actionRemoveImg() {
         if (Yii::$app->request->isAjax) {
             $id = intval(Yii::$app->request->post('id'));
@@ -189,12 +255,7 @@ class DefaultController extends BackendController {
         }
     }
 
-    /**
-     * Deletes an existing Software model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
+    // delete action
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -202,13 +263,7 @@ class DefaultController extends BackendController {
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Software model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Software the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    // find model
     protected function findModel($id)
     {
         if (($model = Software::findOne($id)) !== null) {

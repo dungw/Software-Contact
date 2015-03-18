@@ -103,25 +103,43 @@ class StandardModel extends ActiveRecord {
         return true;
     }
 
-    /**
-     * @author Vuong Dung
-     * @param $model
-     */
-    public static function prepareForSelect($models, $key, $value) {
-        $data = array();
+    // show status data
+    public function showStatus() {
+        if (!empty($this->_statusData)) {
+            foreach ($this->_statusData as $key=>$value) {
+                if ($key == $this->status) return $value;
+            }
+        }
+        return false;
+    }
+
+    // prepare data for select box
+    public static function _prepareDataSelect($models, $key, $value, $data) {
         if (!empty($models)) {
             foreach ($models as $model) {
-                if (isset($model->$key) && isset($model->$value))
-                $data[$model->$key] = $model->$value;
+                if (is_array($model)) {
+                    if (isset($model[$key]) && isset($model[$value]))
+                        $data[$model[$key]] = $model[$value];
+                } else if (is_object($model)) {
+                    if (isset($model->$key) && isset($model->$value))
+                        $data[$model->$key] = $model->$value;
+                }
             }
         }
         return $data;
     }
 
+    // get active records
     public static function getActiveRecords() {
         $collations = self::find()
             ->where(['status' => self::STATUS_ACTIVE])
             ->all();
         return $collations;
     }
+
+    // get attribute labels
+    public function attributeLabels() {
+        return null;
+    }
+
 }

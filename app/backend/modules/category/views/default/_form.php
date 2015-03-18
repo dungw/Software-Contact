@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use common\models\Category;
 use moonland\tinymce\TinyMCE;
 use common\models\Feature;
+use common\components\helpers\Show;
 
 // get attribute labels
 $attributeLabels = $model->attributeLabels();
@@ -34,10 +35,7 @@ if (isset($features)) {
 
     <?= $form->field($model, 'cat_description')->widget(TinyMCE::className()) ?>
 
-    <div class="form-group">
-        <label class="control-label" for="category-status"><?php echo $attributeLabels['status'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'status', $model->_statusData, ['class' => 'form-select']) ?>
-    </div>
+    <?= Show::activeDropDownList($model, 'status', $attributeLabels, $model->_statusData) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Thêm mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

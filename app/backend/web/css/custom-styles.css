@@ -7,11 +7,8 @@ body {
 }
 
 /* PARTS OF FORM */
-.form-control {
-    font-size: 12px !important;
-    padding: 3px 10px !important;
-    height: 25px !important;
-}
+.error-color { color: #a94442 }
+.form-control { font-size: 12px !important; padding: 3px 10px !important; height: 25px !important; }
 textarea.form-control {
     height: auto !important;
 }
@@ -34,6 +31,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     max-height: 70px;
 }
 
+.slice-box { overflow: hidden }
 .form-listbox, .form-select, .form-file { width: 30%; }
 .form-file { padding: 3px; border: 1px solid #A9A9A9 !important; }
 .form-select { padding: 3px; }

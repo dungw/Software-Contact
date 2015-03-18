@@ -2,10 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\components\helpers\Show;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Feature */
-/* @var $form yii\widgets\ActiveForm */
 $attributeLabels = $model->attributeLabels();
 ?>
 
@@ -17,10 +15,7 @@ $attributeLabels = $model->attributeLabels();
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <div class="form-group">
-        <label class="control-label" for="feature-status"><?php echo $attributeLabels['status'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'status', $model->_statusData, ['class' => 'form-select']) ?>
-    </div>
+    <?= Show::activeDropDownList($model, 'status', $attributeLabels, $model->_statusData) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -5,6 +5,7 @@ namespace backend\modules\feature\controllers;
 use Yii;
 use common\models\Feature;
 use common\models\FeatureSearch;
+use common\components\helpers\Show;
 use backend\controllers\BackendController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -103,13 +104,7 @@ class DefaultController extends BackendController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Feature model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Feature the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    // find the model
     protected function findModel($id)
     {
         if (($model = Feature::findOne($id)) !== null) {
@@ -117,5 +112,25 @@ class DefaultController extends BackendController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    // get features by ajax request
+    public function actionGetByAjax() {
+        if (Yii::$app->request->isAjax) {
+            // get params
+            $params = Yii::$app->request->post();
+
+            // if category is integer
+            if (isset($params['category']) && $params['category'] > 0) {
+                $sql = "SELECT f.id, f.name
+                        FROM feature f
+                        INNER JOIN category_feature cf ON(cf.feature_id = f.id)
+                        WHERE cf.category_id = ". $params['category'] ." AND f.status = ". Feature::STATUS_ACTIVE;
+
+                $features = Yii::$app->db->createCommand($sql)->queryAll();
+                print Show::multiSelect($features, 'id', 'name', ['id' => 'features-list']);
+            }
+        }
+
     }
 }

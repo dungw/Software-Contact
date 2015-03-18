@@ -1,15 +1,20 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\models\CategorySearch;
+use yii\helpers\ArrayHelper;
 use moonland\tinymce\TinyMCE;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\Software */
-/* @var $form yii\widgets\ActiveForm */
+use common\models\CategorySearch;
+use common\models\Feature;
+use common\components\helpers\Show;
 
 $attributeLabels = $model->attributeLabels();
+$attributeLabels['features'] = 'Tính năng';
+
+// get features of current category
+if ($model->cate_id > 0) {
+    $activeFeatures = isset($activeFeatures) ? $activeFeatures : null;
+    $featuresBox = Html::listBox('features-list', $activeFeatures, $categoryFeatures, ['class' => 'form-listbox', 'multiple' => true, 'id' => 'features-list']);
+}
 ?>
 
 <div class="software-form">
@@ -18,16 +23,14 @@ $attributeLabels = $model->attributeLabels();
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
-    <div class="form-group">
-        <label class="control-label"><?php echo $attributeLabels['cate_id'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'cate_id', $categories, ['class' => 'form-select']) ?>
+    <?= Show::activeDropDownList($model, 'cate_id', $attributeLabels, $categories, ['class' => 'form-select'], $errors) ?>
+
+    <div id="features-box" class="form-group">
+        <label class="control-label"><?php echo $attributeLabels['features'] ?></label><br>
+        <?php echo $featuresBox ?>
     </div>
 
-    <div class="form-group">
-        <label class="control-label"><?php echo $attributeLabels['manufacture_id'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'manufacture_id', $manufacturers, ['class' => 'form-select']) ?>
-    </div>
-
+    <?= Show::activeDropDownList($model, 'manufacture_id', $attributeLabels, $manufacturers, ['class' => 'form-select'], $errors) ?>
 
     <div class="form-group">
         <label class="control-label"><?php echo $attributeLabels['picture'] ?></label><br>
@@ -47,7 +50,7 @@ $attributeLabels = $model->attributeLabels();
         <?php echo Html::input('file', 'slide[]', null, ['multiple' => true, 'class' => 'form-file']) ?>
     </div>
 
-    <div class="form-group">
+    <div class="form-group slice-box">
         <?php
         if (!empty($slide)) {
             foreach ($slide as $img) {
@@ -70,10 +73,7 @@ $attributeLabels = $model->attributeLabels();
 
     <?= $form->field($model, 'os_support')->textInput(['maxlength' => 255]) ?>
 
-    <div class="form-group">
-        <label class="control-label"><?php echo $attributeLabels['status'] ?></label><br>
-        <?= Html::activeDropDownList($model, 'status', $model->_statusData, ['class' => 'form-select']) ?>
-    </div>
+    <?= Show::activeDropDownList($model, 'status', $attributeLabels, $model->_statusData, ['class' => 'form-select']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Thêm mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -94,12 +94,27 @@ $attributeLabels = $model->attributeLabels();
                     id: id
                 },
                 success: function(data) {
-
                     if (data == 'success') {
                         $('#slice-' + id).remove();
                     }
                 }
             });
         }
+    });
+
+    // load features by category
+    $('#software-cate_id').change(function() {
+        var category = parseInt($(this).val());
+        $.ajax({
+            type: 'POST',
+            url: '/admin/feature/default/get-by-ajax',
+            data: {
+                category: category
+            },
+            success: function(data) {
+                $('#features-box').find('#features-list').remove();
+                $('#features-box').append(data);
+            }
+        });
     });
 </script>

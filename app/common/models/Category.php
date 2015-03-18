@@ -17,40 +17,12 @@ use common\models\Feature;
 class Category extends StandardModel
 {
 
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
+    // get table name
+    public static function tableName() {
         return 'category';
     }
 
-    public function getFeature($categoryId) {
-        if ($categoryId > 0) {
-            $sql = 'SELECT t1.*
-                    FROM feature t1
-                    INNER JOIN category_feature t2 ON(t1.id = t2.feature_id)
-                    WHERE t2.category_id = '. $categoryId .' AND t1.status = '.Feature::STATUS_ACTIVE;
-
-            $collations = Yii::$app->db->createCommand($sql)
-                ->queryAll();
-            return $collations;
-        }
-        return null;
-    }
-
-    public function showStatus() {
-        if (!empty($this->_statusData)) {
-            foreach ($this->_statusData as $key=>$value) {
-                if ($key == $this->status) return $value;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
+    // get rules of validator
     public function rules()
     {
         return [
@@ -61,9 +33,7 @@ class Category extends StandardModel
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    // rewrite function attributeLabels
     public function attributeLabels()
     {
         return [
@@ -73,4 +43,26 @@ class Category extends StandardModel
             'status' => 'Trạng thái',
         ];
     }
+
+    // rewrite function _prepareDataSelect
+    public static function _prepareDataSelect($models, $key, $value) {
+        $data[0] = 'Chọn danh mục';
+        return parent::_prepareDataSelect($models, $key, $value, $data);
+    }
+
+    // get features of category
+    public static function getFeature($categoryId) {
+        if ($categoryId > 0) {
+            $sql = 'SELECT t1.*
+                    FROM feature t1
+                    INNER JOIN category_feature t2 ON(t1.id = t2.feature_id)
+                    WHERE t2.category_id = '. $categoryId .' AND t1.status = '.Feature::STATUS_ACTIVE;
+
+            $collections = Yii::$app->db->createCommand($sql)
+                ->queryAll();
+            return $collections;
+        }
+        return null;
+    }
+
 }
