@@ -11,6 +11,7 @@ $attributeLabels = $model->attributeLabels();
 $attributeLabels['features'] = 'Tính năng';
 
 // get features of current category
+$featuresBox = '';
 if ($model->cate_id > 0) {
     $activeFeatures = isset($activeFeatures) ? $activeFeatures : null;
     $featuresBox = Html::listBox('features-list', $activeFeatures, $categoryFeatures, ['class' => 'form-listbox', 'multiple' => true, 'id' => 'features-list']);

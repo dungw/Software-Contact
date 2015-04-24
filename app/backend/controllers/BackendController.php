@@ -14,8 +14,11 @@ class BackendController extends Controller {
     public function init() {
         $id = Yii::$app->user->id;
         $controllerId = $this->id;
+
         if (!$id && $controllerId != 'site') {
+
             $url = Url::toRoute(['/site/index']);
+
             $this->redirect($url);
         }
 
